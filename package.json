@@ -21,6 +21,7 @@
   "author": "Mason Rogers <viction@widgetbot.io>, Daave <daave@widgetbot.io>",
   "license": "MIT",
   "dependencies": {
+    "@nestjs/common": "^6.11.6",
     "ioredis": "^4.14.1"
   },
   "devDependencies": {

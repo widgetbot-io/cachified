@@ -3,7 +3,7 @@
 [![Downloads](https://img.shields.io/npm/dt/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified)
 [![Version](https://img.shields.io/npm/v/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified)
-[![License](https://img.shields.io/npm/l/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified
+[![License](https://img.shields.io/npm/l/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified)
 ---
 Cachified is an easy to use, redis-powered caching library that allows you to quickly cache your functions using TypeScript decorators.  
 It allows you to cache functions with a one line addition to your code. 
@@ -94,6 +94,31 @@ async function test() {
 };
 
 test();
+```
+
+## Initializing Cachified in a NestJS environment
+
+### app.module.ts
+```ts
+import { Module } from '@nestjs/common';
+import { CachifiedModule } from '@venix/cachified';
+
+const isProduction = process.env.NODE_ENV === 'production';  
+
+@Module({
+    imports: [
+        CachifiedModule.register({
+            enabled: isProduction,
+            redisOptions: {
+                host: '127.0.0.1',
+                port: 6379,
+                db: 0,
+                keyPrefix: 'project:'
+            }
+        })
+    ]
+})
+export class ApplicationModule {}
 ```
 
 If you have any feature requests you would like to be implemented please [open an issue](https://github.com/widgetbot-io/cachified/issues).
