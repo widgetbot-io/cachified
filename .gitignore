@@ -194,9 +194,6 @@ dist/
 tmp/
 temp/
 
-# Test code folders
-test/
-
 # Compiled code folders
 compiled/
 
