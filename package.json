@@ -22,12 +22,14 @@
   "license": "MIT",
   "dependencies": {
     "@nestjs/common": "^6.11.6",
-    "ioredis": "^4.14.1"
+    "ioredis": "^4.14.1",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@types/ioredis": "^4.14.7",
     "@types/node": "^13.1.8",
     "nodemon": "^2.0.2",
+    "rxjs": "^6.5.4",
     "typescript": "^3.7.5"
   }
 }
