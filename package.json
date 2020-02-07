@@ -2,6 +2,7 @@
   "name": "@widgetbot/cachified",
   "version": "1.0.0",
   "description": "A quick and easy redis cache for intensive functions.",
+  "private": false,
   "keywords": [
     "cache",
     "redis",
