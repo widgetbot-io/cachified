@@ -1,9 +1,9 @@
 # Cachified - A simple redis powered cache.
 
-[![Downloads](https://img.shields.io/npm/dt/cachified.svg)](https://www.npmjs.com/package/cachified)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/cachified)](https://www.npmjs.com/package/cachified)
-[![Version](https://img.shields.io/npm/v/cachified.svg)](https://www.npmjs.com/package/cachified)
-[![License](https://img.shields.io/npm/l/cachified)](https://www.npmjs.com/package/cachified)
+[![Downloads](https://img.shields.io/npm/dt/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified)
+[![Version](https://img.shields.io/npm/v/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified)
+[![License](https://img.shields.io/npm/l/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified
 ---
 Cachified is an easy to use, redis-powered caching library that allows you to quickly cache your functions using TypeScript decorators.  
 It allows you to cache functions with a one line addition to your code. 
@@ -16,7 +16,7 @@ A simple but descriptive example on how to use Cachified can be found in the [ex
 
 ### index.ts
 ```ts
-import { ConfigureCachified } from '@widgetbot/cachified';
+import { ConfigureCachified } from '@venix/cachified';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -36,7 +36,7 @@ ConfigureCachified({
 ### index.ts
 ```ts
 import * as Redis from 'ioredis';
-import { ConfigureCachified } from '@widgetbot/cachified';
+import { ConfigureCachified } from '@venix/cachified';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -57,7 +57,7 @@ ConfigureCachified({
 
 ### index.ts
 ```ts
-import { Cachified } from '@widgetbot/cachified';
+import { Cachified } from '@venix/cachified';
 
 class Person {
     constructor(private readonly name: string) {}

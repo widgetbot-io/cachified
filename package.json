@@ -1,5 +1,5 @@
 {
-  "name": "@widgetbot/cachified",
+  "name": "@venix/cachified",
   "version": "1.0.0",
   "description": "A quick and easy redis cache for intensive functions.",
   "private": false,
