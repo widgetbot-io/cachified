@@ -1,6 +1,6 @@
 {
   "name": "@venix/cachified",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A quick and easy redis cache for intensive functions.",
   "private": false,
   "keywords": [
