@@ -1,5 +1,3 @@
-import * as crypto from "crypto";
-
 import {GetConfig} from "./configure";
 import {CachifiedInstance} from "./types";
 
@@ -7,14 +5,12 @@ export function Cachified(expirySeconds: number = 24 * 60 * 60): MethodDecorator
     return function(target: any, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) {
         const oldFunc = descriptor.value;
 
-        const funcIdentifier = generateTimeBasedID();
-
         descriptor.value = async function(...args: any[]) {
             const config = GetConfig();
 
             if (!config.enabled) return await oldFunc.apply(this, args);
 
-            const redisKey = `cachified:${funcIdentifier}_${args.join('-')}`;
+            const redisKey = `cachified:${oldFunc.name}_${args.join('-')}`;
 
             const val = await getRawVal(config, redisKey);
             if (val) {
@@ -48,8 +44,4 @@ function setRawValWithExpiry(config: CachifiedInstance, key: string, value: any,
     if (!config.client) throw new Error('Attempted Cachified usage without initialization');
 
     return config.client.set(key, value, 'EX', expiry);
-}
-
-function generateTimeBasedID() {
-    return `${new Date().getTime().toString(26)}${crypto.randomBytes(32).toString('hex')}`.substr(0, 32);
 }
