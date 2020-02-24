@@ -1,5 +1,5 @@
-import {CachifiedConfiguration, CachifiedInstance} from "../types";
-import * as IORedis from "ioredis";
+import {CachifiedConfiguration, CachifiedInstance} from '../types';
+import * as IORedis from 'ioredis';
 
 const config: CachifiedInstance = {};
 

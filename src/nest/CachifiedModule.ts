@@ -1,6 +1,6 @@
-import {DynamicModule, Module} from "@nestjs/common";
-import {CachifiedConfiguration} from "../types";
-import {ConfigureCachified} from "../configure";
+import {DynamicModule, Module} from '@nestjs/common';
+import {CachifiedConfiguration} from '../types';
+import {ConfigureCachified} from '../configure';
 
 
 @Module({})

@@ -1,5 +1,5 @@
-import {GetConfig} from "./configure";
-import {CachifiedInstance} from "./types";
+import {GetConfig} from './configure';
+import {CachifiedInstance} from './types';
 
 export function Cachified(expirySeconds: number = 24 * 60 * 60): MethodDecorator { // One day expiry default
     return function(target: any, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) {

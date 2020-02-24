@@ -1,4 +1,4 @@
-import * as IORedis from "ioredis";
+import * as IORedis from 'ioredis';
 
 export interface CachifiedInstance {
     client?: IORedis.Redis,

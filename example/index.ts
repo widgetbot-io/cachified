@@ -1,5 +1,5 @@
-import {Cachified} from "../src";
-import {ConfigureCachified} from "../src/configure";
+import {Cachified} from '../src';
+import {ConfigureCachified} from '../src/configure';
 
 ConfigureCachified({
     redisConfig: {
