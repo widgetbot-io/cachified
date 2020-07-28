@@ -1,25 +1,22 @@
 {
   "name": "@venix/cachified",
   "version": "1.0.5",
-  "description": "A quick and easy redis cache for intensive functions.",
+  "license": "MIT",
   "private": false,
+  "description": "A quick and easy redis cache for intensive functions.",
+  "repository": "https://github.com/widgetbot-io/cachified",
+  "author": "Mason Rogers <viction@widgetbot.io>, Daave <daave@widgetbot.io>",
+  "main": "compiled/index.js",
+  "types": "compiled/index.d.ts",
+  "scripts": {
+    "prepublishOnly": "tsc"
+  },
   "keywords": [
     "cache",
     "redis",
     "cachify",
     "cachified"
   ],
-  "main": "compiled/index.js",
-  "types": "compiled/index.d.ts",
-  "files": [
-    "compiled"
-  ],
-  "scripts": {
-    "prepublishOnly": "tsc"
-  },
-  "repository": "https://github.com/widgetbot-io/cachified",
-  "author": "Mason Rogers <viction@widgetbot.io>, Daave <daave@widgetbot.io>",
-  "license": "MIT",
   "dependencies": {
     "@nestjs/common": "^6.11.6",
     "ioredis": "^4.14.1",
@@ -31,5 +28,8 @@
     "nodemon": "^2.0.2",
     "rxjs": "^6.5.4",
     "typescript": "^3.7.5"
-  }
+  },
+  "files": [
+    "compiled"
+  ]
 }
