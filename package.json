@@ -17,6 +17,18 @@
     "cachify",
     "cachified"
   ],
+  "contributors": [
+    {
+      "name": "Mason Rogers",
+      "email": "mason@viction.dev",
+      "url": "viction.dev"
+    },
+    {
+      "name": "Lewis Tierney",
+      "email": "daave@widgetbot.io",
+      "url": "widgetbot.io"
+    }
+  ],
   "dependencies": {
     "@nestjs/common": "^6.11.6",
     "ioredis": "^4.14.1",
