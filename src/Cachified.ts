@@ -1,18 +1,23 @@
 import {GetConfig} from './configure';
 import {CachifiedInstance} from './types';
 
-export function Cachified(expirySeconds: number = 24 * 60 * 60, transform?: (...any: any[]) => any[]): MethodDecorator { // One day expiry default
+interface CachifiedOptions {
+    transform?: (...any: any[]) => any[],
+    customJoinStr?: string // - is default
+}
+
+export function Cachified(expirySeconds: number = 24 * 60 * 60, options?: CachifiedOptions): MethodDecorator { // One day expiry default
     return function(target: any, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) {
         const oldFunc = descriptor.value;
 
         descriptor.value = async function(...args: any[]) {
-            args = !!transform ? transform(args) : args;
+            args = !!options?.transform ? options.transform(args) : args;
 
             const config = GetConfig();
 
             if (!config.enabled) return oldFunc.apply(this, args);
 
-            const redisKey = `cachified:${oldFunc.name}_${args.join('-')}`;
+            const redisKey = `cachified:${oldFunc.name}_${args.join(options?.customJoinStr || '-')}`;
 
             const val = await getRawVal(config, redisKey);
             if (val) {
