@@ -11,7 +11,7 @@ export function Cachified(expirySeconds: number = 24 * 60 * 60, options?: Cachif
         const oldFunc = descriptor.value;
 
         descriptor.value = async function(...args: any[]) {
-            args = !!options?.transform ? options.transform(args) : args;
+            args = !!options?.transform ? options.transform(...args) : args;
 
             const config = GetConfig();
 
