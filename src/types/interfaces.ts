@@ -1,12 +1,14 @@
 import * as IORedis from 'ioredis';
 
-export interface CachifiedInstance {
-    client?: IORedis.Redis,
+export interface CachifiedConfiguration {
+    client: IORedis.Redis | IORedis.RedisOptions
     enabled?: boolean
 }
 
-export interface CachifiedConfiguration {
-    redisConfig?: IORedis.RedisOptions
-    client?: IORedis.Redis
-    enabled?: boolean
+export interface CachifiedDecoratorOptions {
+    transform?: (...args: any[]) => any[]
+}
+
+export interface CachifiedDecoratorMetadata extends CachifiedDecoratorOptions {
+    expirySeconds: number;
 }

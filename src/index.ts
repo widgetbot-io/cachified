@@ -1,4 +1,4 @@
-export * from './configure';
-export * from './nest';
-export * from './types';
-export * from './Cachified';
+export { Cachified } from './decorators';
+export { CachifiedModule } from './modules';
+export { CachifiedService } from './services';
+export { CachifiedConfiguration, CachifiedDecoratorOptions } from './types';
