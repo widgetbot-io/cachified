@@ -6,7 +6,7 @@ export interface CachifiedConfiguration {
 }
 
 export interface CachifiedDecoratorOptions {
-    transform?: (...args: any[]) => any[]
+    transform?: (...args: any[]) => any[];
 }
 
 export interface CachifiedDecoratorMetadata extends CachifiedDecoratorOptions {
