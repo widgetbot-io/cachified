@@ -1,4 +1,4 @@
-# Cachified - A simple redis powered cache.
+# Cachified - A plug and play NestJS Redis powered cache.
 
 [![Downloads](https://img.shields.io/npm/dt/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@venix/cachified.svg)](https://www.npmjs.com/package/@venix/cachified)
@@ -12,110 +12,74 @@ A simple but descriptive example on how to use Cachified can be found in the [ex
 
 ---
 
-## Configuring Cachified via connnection config
+## Initializing Cachified
 
-### index.ts
+### example.service.ts
 ```ts
-import { ConfigureCachified } from '@venix/cachified';
-
-const isProduction = process.env.NODE_ENV === 'production';
-
-ConfigureCachified({
-    enabled: isProduction,
-    redisOptions: {
-        host: '127.0.0.1',
-        port: 6379,
-        db: 0,
-        keyPrefix: 'project:'
-    }
-});
-```
-
-## Configuring Cachified via redis connection
-
-### index.ts
-```ts
-import * as Redis from 'ioredis';
-import { ConfigureCachified } from '@venix/cachified';
-
-const isProduction = process.env.NODE_ENV === 'production';
-
-const redisClient = new Redis({
-    host: '127.0.0.1',
-    port: 6379,
-    db: 0,
-    keyPrefix: 'project:'
-});
-
-ConfigureCachified({
-    enabled: isProduction,
-    client: redisClient
-});
-```
-
-## Using cachified after  configuration
-
-### index.ts
-```ts
+import { Injectable } from '@nestjs/common';
 import { Cachified } from '@venix/cachified';
 
-class Person {
-    constructor(private readonly name: string) {}
-
+@Injectable()
+export class ExampleService {
     @Cachified()
-    greet() {
-        return `Hello ${this.name}!`
-    }
-
-    @Cachified(7 * 24 * 60 * 60)
-    timed() {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve('HELLO');
-            }, 1000);
-        });
-    }
-
-    @Cachified()
-    timedObject() {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve({ cache: 'not hit' });
-            }, 1000);
-        });
+    cachedMethod() {
+        return "Hey from cached method"       
     }
 }
-
-async function test() {
-    const viction = new Person('viction');
-
-    console.log(await viction.timed());
-    console.log(await viction.timedObject());
-};
-
-test();
 ```
 
-## Initializing Cachified in a NestJS environment
-
-### app.module.ts
+### app.module.ts Using Redis client data
 ```ts
 import { Module } from '@nestjs/common';
 import { CachifiedModule } from '@venix/cachified';
+import { ExampleService } from './example.service.ts';
 
 const isProduction = process.env.NODE_ENV === 'production';  
 
 @Module({
     imports: [
-        CachifiedModule.register({
+        CachifiedModule.forRoot({
             enabled: isProduction,
-            redisOptions: {
+            client: {
                 host: '127.0.0.1',
                 port: 6379,
                 db: 0,
                 keyPrefix: 'project:'
             }
         })
+    ],
+    providers: [
+        ExampleService
+    ]
+})
+export class ApplicationModule {}
+```
+
+### app.module.ts Using pre-defiend redis client
+```ts
+import { Module } from '@nestjs/common';
+import { CachifiedModule } from '@venix/cachified';
+import * as IORedis from 'ioredis';
+import { ExampleService } from './example.service.ts';
+
+const isProduction = process.env.NODE_ENV === 'production';  
+
+const redisClient = new IORedis({
+    host: '127.0.0.1',
+    port: 6379,
+    db: 0,
+    keyPrefix: 'project:'
+});
+
+@Module({
+    imports: [
+        CachifiedModule.forRoot({
+            enabled: isProduction,
+            client: redisClient
+        })
+    ],
+    providers: [
+        ExampleService
     ]
 })
 export class ApplicationModule {}
